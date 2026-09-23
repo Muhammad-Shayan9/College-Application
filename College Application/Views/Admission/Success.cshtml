@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 text-center">
+
+            <div class="card-header text-center py-3"
+                 style="background-color: var(--accent-color); color: var(--contrast-color);">
+                <h4 class="mb-0">Admission Form Submitted</h4>
+            </div>
+
+            <div class="card-body p-4"
+                 style="background-color: var(--background-color);">
+
+                <h5 class="mb-3"
+                    style="color: var(--accent-color);">
+                    ✅ Successfully Admission Form Filled
+                </h5>
+
+                <p class="fs-5" style="color: var(--default-color);">
+                    Your <strong>Admission Tracking ID</strong> is:
+                </p>
+
+                <div class="alert fs-4 fw-bold position-relative text-center"
+                     style="
+                        background-color: rgba(0,0,0,0.03);
+                        border: 2px solid var(--accent-color);
+                        color: var(--default-color);
+                        border-radius: 50px;
+                     ">
+                    <span id="trackingId">@ViewBag.UniqueId</span>
+
+                    <button type="button"
+                            class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-3"
+                            style="
+                                border: 2px solid var(--accent-color);
+                                color: var(--accent-color);
+                                border-radius: 50px;
+                            "
+                            onclick="copyTrackingId()">
+                        📋 Copy
+                    </button>
+                </div>
+
+                <p class="text-danger">
+                    Please save this ID carefully.
+                    You will need it to check your admission status.
+                </p>
+
+                <div class="mt-4">
+                    <a asp-action="CheckStatus"
+                       asp-controller="Admission"
+                       class="btn me-2"
+                       style="
+                            background-color: var(--accent-color);
+                            color: var(--contrast-color);
+                            border-radius: 50px;
+                       ">
+                        Check Admission Status
+                    </a>
+
+                    <a asp-action="Index"
+                       asp-controller="Home"
+                       class="btn btn-secondary"
+                       style="border-radius: 50px;">
+                        Back to Home
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyTrackingId() {
+        const text = document.getElementById("trackingId").innerText;
+        navigator.clipboard.writeText(text);
+    }
+</script>

@@ -1,0 +1,115 @@
+﻿
+@model College_Application.Models.Admission
+
+@{
+    ViewData["Title"] = "Check Admission Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 text-center">
+
+            <div class="card-header text-center py-3"
+                 style="background-color: var(--accent-color); color: var(--contrast-color);">
+                <h4 class="mb-0">Your Admission Status</h4>
+            </div>
+
+            <div class="card-body p-4"
+                 style="background-color: var(--background-color);">
+
+                <div class="alert alert-info fs-5 fw-bold text-center">
+                    ✅ <strong>Admission Tracking ID:</strong> @Model.UniqueId
+                </div>
+
+                <table class="table table-bordered table-striped mt-3">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Father Name</th>
+                            <td>@Model.FatherName</td>
+                        </tr>
+                        <tr>
+                            <th>Mother Name</th>
+                            <td>@Model.MotherName</td>
+                        </tr>
+                        <tr>
+                            <th>Stream</th>
+                            <td>@Model.Stream</td>
+                        </tr>
+                        <tr>
+                            <th>Field</th>
+                            <td>@Model.Field</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if (Model.Status == "Waiting")
+                                {
+                                    <span class="text-warning fw-bold">@Model.Status</span>
+                                }
+                                else if (Model.Status == "Accepted")
+                                {
+                                    <span class="text-success fw-bold">@Model.Status</span>
+                                }
+                                else if (Model.Status == "Rejected")
+                                {
+                                    <span class="text-danger fw-bold">@Model.Status</span>
+                                }
+                                else
+                                {
+                                    @Model.Status
+                                }
+                            </td>
+                        </tr>
+                        @if (!string.IsNullOrEmpty(Model.SpecializedSubject))
+                        {
+                            <tr>
+                                <th>Specialized Subject</th>
+                                <td>@Model.SpecializedSubject</td>
+                            </tr>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.OptionalSubject))
+                        {
+                            <tr>
+                                <th>Optional Subject</th>
+                                <td>@Model.OptionalSubject</td>
+                            </tr>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.SportsDetails))
+                        {
+                            <tr>
+                                <th>Sports Details</th>
+                                <td>@Model.SportsDetails</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="mt-4">
+                    <button asp-action="Index"
+                       asp-controller="Home"
+                            class="btn btn-primary me-2" style="
+                            background-color: var(--accent-color);
+                            color: var(--contrast-color);
+                            border-radius: 50px;">
+                        Back To Home
+                    </button>
+
+                    <a asp-action="CheckStatus"
+                       asp-controller="Admission"
+                       class="btn btn-secondary"
+                       style="border-radius: 50px;">
+                        Refresh Status
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

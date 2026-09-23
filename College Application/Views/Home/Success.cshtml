@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // ya agar aap Admin ya User panel use kar rahe ho, wahan ka layout
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header text-center py-3"
+                 style="background-color: var(--accent-color); color: var(--contrast-color);">
+                <h4 class="mb-0">Message Sent</h4>
+            </div>
+
+            <div class="card-body p-4 text-center"
+                 style="background-color: var(--background-color);">
+
+                <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+
+                <h5 class="mb-3">Thank you!</h5>
+                <p class="mb-4">
+                    Your message has been sent successfully.<br />
+                    We will contact you soon.
+                </p>
+
+                <a href="@Url.Action("Contact", "Home")"
+                   class="btn btn-lg"
+                   style="
+                        background-color: var(--accent-color);
+                        color: var(--contrast-color);
+                        border-radius: 50px;
+                    ">
+                    Back to Contact
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

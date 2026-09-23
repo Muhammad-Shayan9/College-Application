@@ -1,0 +1,71 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Manage Email";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0">
+
+            <!-- Card Header -->
+            <div class="card-header text-center py-3"
+                 style="background-color: var(--accent-color); color: var(--contrast-color); font-weight: 600;">
+                <h4 class="mb-0">@ViewData["Title"]</h4>
+            </div>
+
+            <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+            <!-- Card Body -->
+            <div class="card-body p-4" style="background-color: var(--background-color);">
+
+                <form id="email-form" method="post">
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                    <!-- Current Email -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        @if (Model.IsEmailConfirmed)
+                        {
+                            <div class="input-group">
+                                <input asp-for="Email" class="form-control form-control-lg" disabled />
+                                <span class="input-group-text text-success fw-bold">✓</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <input asp-for="Email" class="form-control form-control-lg" disabled />
+                            <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail"
+                                    class="btn btn-link mt-2 p-0" style="color: var(--accent-color);">
+                                Send verification email
+                            </button>
+                        }
+                    </div>
+
+                    <!-- New Email -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.NewEmail" class="form-label fw-semibold"></label>
+                        <input asp-for="Input.NewEmail" class="form-control form-control-lg" autocomplete="email" aria-required="true" />
+                        <span asp-validation-for="Input.NewEmail" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid mt-2">
+                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail"
+                                class="btn btn-lg rounded-pill"
+                                style="background-color: var(--accent-color); color: var(--contrast-color);">
+                            Change Email
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

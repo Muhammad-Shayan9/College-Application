@@ -1,0 +1,70 @@
+﻿@model IEnumerable<College_Application.Models.Admission>
+@{
+    ViewData["Title"] = "NewAddmission";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+<h1 class="h3 mb-2 text-gray-800 text-center">New Admission</h1>
+<p class="mb-4 text-center">
+    "Review and manage new college admission students."
+</p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <!-- Left side: Title -->
+        <h6 class="m-0 font-weight-bold text-primary">Student Admission Details</h6>
+
+        <!-- Right side: Search Bar -->
+        <form asp-action="NewAddmission" method="get" class="d-flex">
+            <input type="text" name="searchGuid" class="form-control form-control-sm me-2"
+                   placeholder="Enter Tracking ID..." />
+            <button type="submit" class="btn btn-sm btn-primary">Search</button>
+        </form>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive" style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" style="min-width:1200px; white-space: nowrap;">
+                <thead>
+                    <tr>
+                        <th>Guid</th>
+                        <th>Name</th>
+                        <th>Father</th>
+                        <th>Mother</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Permanent Residency</th>
+                        <th>Stream</th>
+                        <th>Pre-School</th>
+                        <th>Enrollment Number</th>
+                        <th>Previous Stream</th>
+                        <th>Marks Obtained</th>
+                        <th>Marks Out Of</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Admission in Model)
+                    {
+                        <tr>
+                            <td>@Admission.UniqueId</td>
+                            <td>@Admission.Name</td>
+                            <td>@Admission.FatherName</td>
+                            <td>@Admission.MotherName</td>
+                            <td>@Admission.DateOfBirth</td>
+                            <td>@Admission.Gender</td>
+                            <td>@Admission.PermanentAddress</td>
+                            <td>@Admission.Field</td>
+                            <td>@Admission.School</td>
+                            <td>@Admission.EnrollmentNumber</td>
+                            <td>@Admission.PreviousStream</td>
+                            <td>@Admission.ClassObtained</td>
+                            <td>@Admission.OutOf</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+

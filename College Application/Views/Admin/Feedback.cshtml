@@ -1,0 +1,43 @@
+﻿@model IEnumerable<College_Application.Models.Contact>
+@{
+    ViewData["Title"] = "Feedback";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800 text-center">Feedback</h1>
+<p class="mb-4 text-center">
+    "Review Student Contact."
+</p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Student Admission Details</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" style="min-width:1200px; white-space: nowrap;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var feedback in Model)
+                    {
+                        <tr>
+                            <td>@feedback.Name</td>
+                            <td>@feedback.Email</td>
+                            <td>@feedback.Subject</td>
+                            <td>@feedback.Message</td>                         
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+

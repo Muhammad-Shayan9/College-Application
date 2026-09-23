@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+<script src="~/Admin/vendor/chart.js/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+
+
+
+<h1 class="h3 mb-2 text-gray-800 text-center">Dashboard</h1>
+<div class="row">
+
+    <!-- Total Admissions -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Total Admissions
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalAdmissions</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Courses -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Total Courses
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalCourses</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-book fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Admissions -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Pending Admissions
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PendingAdmissions</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Faculty -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Total Faculty
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalFaculty</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+            <!-- Area Chart Card -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Stream Wise Admissions (%)</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+            <!-- Doughnut Chart Card -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Admissions Overview</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="admissionsChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-warning"></i>
+                        Pending (@ViewBag.PendingAdmissions)
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i>
+                        Approved (@ViewBag.ApprovedAdmissions)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+<script>
+    var ctx = document.getElementById("admissionsChart");
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Pending", "Approved"],
+            datasets: [{
+                data: [
+                    @ViewBag.PendingAdmissions,
+                    @ViewBag.ApprovedAdmissions
+                ],
+                backgroundColor: ['#f6c23e', '#1cc88a'],
+                hoverBackgroundColor: ['#dda20a', '#17a673'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            cutoutPercentage: 80, 
+            legend: {
+                display: false
+            }
+        },
+    });
+    //For Chart
+          var ctx = document.getElementById("myAreaChart").getContext('2d');
+    new Chart(ctx, {
+        type: 'line', // Area chart using line with fill
+        data: {
+            labels: @Html.Raw(Json.Serialize(ViewBag.StreamLabels)),
+            datasets: [{
+                label: 'Stream Wise Admissions (%)',
+                data: @Html.Raw(Json.Serialize(ViewBag.StreamPercent)),
+                backgroundColor: 'rgba(78, 115, 223, 0.2)', // light fill
+                borderColor: 'rgba(78, 115, 223, 1)',
+                borderWidth: 2,
+                fill: true, // fill under the line
+                tension: 0.4 // smooth curves
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + "%";
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: true }
+            }
+        }
+    });
+</script>
+
+
+
+
+

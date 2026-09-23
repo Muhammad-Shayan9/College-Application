@@ -1,0 +1,66 @@
+﻿@model List<College_Application.Models.Faculty>
+@{
+    ViewData["Title"] = "Faculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-title" data-aos="fade">
+    <div class="heading">
+        <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1>Faculty</h1>
+                    <p class="mb-0">
+                        Our faculty consists of highly qualified and experienced educators.
+                        They are dedicated to delivering quality education and academic excellence.
+                        Our teachers inspire students to think critically and achieve their full potential.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="trainers" class="section trainers">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+            @for (int i = 0; i < (Model?.Count ?? 0); i++)
+            {
+                var faculty = Model[i];
+
+                <div class="col-lg-4 col-md-6 member"
+                     data-aos="fade-up"
+                     data-aos-delay="@((i + 1) * 100)">
+
+                    <div class="member-img">
+                        <img src="@(string.IsNullOrEmpty(faculty.ImagePath)
+                                                                 ? Url.Content("~/User/img/team/team-1.jpg")
+                                                                 : faculty.ImagePath)"
+                         class="img-fluid"
+                         alt="@faculty.Title">
+
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="member-info text-center">
+                    <h4>@faculty.Title</h4>
+                    <span>Faculty Member</span>
+                    <p>
+                        @faculty.Description
+                    </p>
+                </div>
+            </div>
+                        }
+
+        </div>
+
+    </div>
+
+</section>
+

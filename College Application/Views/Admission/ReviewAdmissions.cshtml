@@ -1,0 +1,101 @@
+﻿@model List<College_Application.Models.Admission>
+
+@{
+    ViewData["Title"] = "Review Admissions";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800 text-center">Admission Applications</h1>
+    <p class="mb-4 text-center">
+        Below is the list of all student admission applications.
+        You can approve or reject applications from here.
+    </p>
+
+    <!-- DataTable Card -->
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <!-- Left side: Title -->
+            <h6 class="m-0 font-weight-bold text-primary">Student Admission Details</h6>
+
+            <!-- Right side: Search Bar -->
+            <form asp-action="ReviewAdmissions" method="get" class="d-flex">
+                <input type="text" name="searchGuid" class="form-control form-control-sm me-2"
+                       placeholder="Enter Tracking ID..." />
+                <button type="submit" class="btn btn-sm btn-primary">Search</button>
+            </form>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle"
+                       id="dataTable" width="100%" cellspacing="0">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Tracking ID</th>
+                            <th>Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.UniqueId</td>
+                                <td>
+                                    <span class="badge
+                                            @(item.Status == "Approved" ? "bg-success" :
+                                                                                    item.Status == "Rejected" ? "bg-danger" :
+                                                                                    "bg-warning")">
+                                        @item.Status
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    @if (item.Status.Equals("Waiting", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Approved" />
+                                            <button class="btn btn-success btn-sm">
+                                                Approve
+                                            </button>
+                                        </form>
+
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline ms-1">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Rejected" />
+                                            <button class="btn btn-danger btn-sm">
+                                                Reject
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Finalized</span>
+                                    }
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

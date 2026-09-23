@@ -1,0 +1,24 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<College_Application.Areas.Identity.Data.ApplicationUser> SignInManager
+@model AccessDeniedModel
+
+@{
+    // Server-side checks
+    var isSignedIn = SignInManager.IsSignedIn(User) ? "true" : "false";
+    var isAdmin = User.IsInRole("Admin") ? "true" : "false";
+}
+
+<script>
+    var isSignedIn = @isSignedIn.ToString().ToLower() // true/false
+    var isAdmin = @isAdmin.ToString().ToLower()       // true/false
+
+    alert("Access Denied! You do not have permission to view this page.");
+
+    if (isSignedIn && isAdmin) {
+        window.location.href = "/Admin/Dashboard";
+    } else {
+        window.location.href = "/Home/Index";
+    }
+</script>
+

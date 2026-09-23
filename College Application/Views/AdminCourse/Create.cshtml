@@ -1,0 +1,32 @@
+﻿@model College_Application.Models.Course
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2 class="h3 mb-2 text-gray-800 text-center">Add New Course</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Course Title</label>
+        <input asp-for="Title" class="form-control" placeholder="Enter course title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Course Description</label>
+        <textarea asp-for="Description" class="form-control" rows="5" placeholder="Enter course description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-primary">Course Image</label>
+
+        <input type="file" name="Image" class="form-control" />
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Course</button>
+
+</form>
+

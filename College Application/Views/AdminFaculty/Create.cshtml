@@ -1,0 +1,34 @@
+﻿@model College_Application.Models.Faculty
+
+@{
+    ViewData["Title"] = "Create Faculty";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2 class="h3 mb-2 text-gray-800 text-center">Add New Faculty</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Faculty Title</label>
+        <input asp-for="Title" class="form-control" placeholder="Enter faculty title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Faculty Description</label>
+        <textarea asp-for="Description"
+                  class="form-control"
+                  rows="5"
+                  placeholder="Enter faculty description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-primary">Faculty Image</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Faculty</button>
+
+</form>

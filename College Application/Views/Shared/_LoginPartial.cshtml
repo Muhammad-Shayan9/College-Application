@@ -1,0 +1,46 @@
+﻿@using College_Application.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navmenu-login d-flex align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a asp-area="Identity"
+               asp-page="/Account/Manage/Index"
+               class="nav-link">
+                Hello @UserManager.GetUserName(User)!
+            </a>
+        </li>
+
+        <li>
+            <form asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  method="post">
+                <button type="submit" class="nav-link logout-btn">
+                    LogOut
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a asp-area="Identity"
+               asp-page="/Account/Register"
+               class="nav-link">
+                Register
+            </a>
+        </li>
+
+        <li>
+            <a asp-area="Identity"
+               asp-page="/Account/Login"
+               class="nav-link btn-login">
+                Login
+            </a>
+        </li>
+    }
+</ul>

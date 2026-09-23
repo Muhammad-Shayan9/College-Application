@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="hero" class="hero section dark-background">
+    <img src="~/User/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container">
+        <h2 data-aos="fade-up" data-aos-delay="100">Learning Today,<br>Leading Tomorrow</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Where knowledge meets innovation and success begins.</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+            <a asp-controller="Admission" asp-action="AdmissionForm" class="btn-get-started">ADMISSION NOW</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about section">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <img src="@Url.Content("~/User/img/about.jpg")" class="img-fluid" alt="">
+
+            </div>
+
+            <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+                <h3>About ITM College</h3>
+                <p class="fst-italic">
+                    At ITM College, we are committed to delivering high-quality education that empowers students to achieve academic excellence, develop leadership skills, and thrive in a rapidly changing world.
+                </p>
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>Experienced and dedicated faculty committed to student success.</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>Modern classrooms and state-of-the-art facilities.</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>Programs designed to prepare students for real-world challenges.</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>Wide range of courses to suit diverse academic interests.</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>Opportunities for internships and industry collaborations.</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>Strong focus on research, innovation, and skill development.</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="counts" class="section counts light-background">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="186" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Students</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Courses</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Events</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Faculty</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+        </div>
+
+    </div>
+
+</section>
+ 
+<section id="testimonials" class="testimonials section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Faculty Experiences</h2>
+        <p>What are they saying</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper"> 
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                        <img src="~/User/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                        <h3>Dr. Michael Adams</h3>
+                        <h4>Senior Lecturer</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>Teaching at ITM College has been a rewarding experience.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+                <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                        <img src="~/User/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                        <h3>Ms. Sarah Wilson</h3>
+                        <h4>Computer Science Teacher</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>Excellent environment where theory meets practice.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+                <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                        <img src="~/User/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                        <h3>Mr. David Khan</h3>
+                        <h4>Business Instructor</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>Modern facilities and student-focused approach.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+                <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                        <img src="~/User/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                        <h3>Prof. Emily Brown</h3>
+                        <h4>Head of Department</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>Encourages creativity and critical thinking.</span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- End testimonial item -->
+        </div>
+        
+        <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+</section>
+
+<section id="why-us" class="section why-us">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <!-- Left Content -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-box">
+                    <h3>How Can We Become Successful?</h3>
+                    <p>
+                        Success is not achieved overnight. It is the result of consistent effort,
+                        smart habits, and a balanced lifestyle. By focusing on learning new skills,
+                        maintaining good health, and taking proper rest, anyone can move closer
+                        to their goals and build a successful future.
+                    </p>
+
+                </div>
+            </div>
+            <!-- End Left Content -->
+            <!-- Right Icons -->
+            <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+                    <!-- Eat -->
+                    <div class="col-xl-4">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-egg-fried"></i>
+                            <h4>Eat Healthy</h4>
+                            <p>
+                                A healthy diet provides energy and focus. Eating nutritious food
+                                keeps the body active and the mind sharp for daily challenges.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Icon Box -->
+                    <!-- Learn -->
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-book"></i>
+                            <h4>Learn Continuously</h4>
+                            <p>
+                                Learning new things improves skills and confidence. Continuous learning
+                                opens doors to better opportunities and long-term success.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Icon Box -->
+                    <!-- Sleep -->
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-moon-stars"></i>
+                            <h4>Sleep Well</h4>
+                            <p>
+                                Proper sleep refreshes the mind and body. Good rest improves productivity,
+                                decision-making, and overall well-being.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Icon Box -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+

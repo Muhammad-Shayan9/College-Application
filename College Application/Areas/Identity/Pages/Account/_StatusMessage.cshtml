@@ -1,0 +1,30 @@
+﻿@model string
+
+@if (!string.IsNullOrWhiteSpace(Model))
+{
+    bool isError = Model.StartsWith("Error", StringComparison.OrdinalIgnoreCase);
+
+    <div class="alert d-flex align-items-center justify-content-between
+                        rounded-pill px-4 py-3 shadow-sm mb-3
+                        @(isError ? "alert-danger" : "alert-success")"
+         role="alert"
+         style="
+                font-weight: 500;
+                background-color: @(isError ? "#f8d7da" : "#d1e7dd");
+                color: @(isError ? "#842029" : "#0f5132");
+             ">
+
+        <div class="d-flex align-items-center">
+            <span class="me-2 fs-5">
+                @(isError ? "❌" : "✅")
+            </span>
+            <span>@Model</span>
+        </div>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+        </button>
+    </div>
+}

@@ -1,0 +1,49 @@
+﻿@model College_Application.Models.Faculty
+
+@{
+    ViewData["Title"] = "Edit Faculty";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2 class="h3 mb-2 text-gray-800 text-center">Edit Faculty</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Faculty Title</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Faculty Description</label>
+        <textarea asp-for="Description"
+                  class="form-control"
+                  rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Current Image</label><br />
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="@Model.ImagePath"
+                 alt="@Model.Title"
+                 width="120"
+                 class="mb-2" />
+        }
+        else
+        {
+            <p class="text-muted">No image uploaded</p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Change Image</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-warning">Update Faculty</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

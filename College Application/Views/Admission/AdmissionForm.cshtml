@@ -1,0 +1,162 @@
+﻿@model College_Application.Models.Admission
+@{
+    ViewData["Title"] = "Admission Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg border-0">
+
+        <!-- Header -->
+        <div class="card-header text-center py-3"
+             style="background-color: var(--accent-color); color: var(--contrast-color);">
+            <h3 class="mb-0">College Admission Form</h3>
+        </div>
+
+        <div class="card-body p-4" style="background-color: var(--background-color);">
+
+            <form id="mainForm" asp-action="AdmissionForm" method="post" onsubmit="disableSubmit()">
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
+
+                <!-- Personal Details -->
+                <h5 class="mb-3" style="color: var(--accent-color);">Personal Details</h5>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label asp-for="Name" class="form-label">Full Name *</label>
+                        <input asp-for="Name" class="form-control form-control-lg" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="FatherName" class="form-label">Father Name *</label>
+                        <input asp-for="FatherName" class="form-control form-control-lg" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="MotherName" class="form-label">Mother Name *</label>
+                        <input asp-for="MotherName" class="form-control form-control-lg" />
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                        <label asp-for="DateOfBirth" class="form-label">Date of Birth *</label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control form-control-lg" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Gender" class="form-label">Gender *</label>
+                        <select asp-for="Gender" class="form-control form-control-lg">
+                            <option disabled selected>-- Select Gender --</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <h5 class="mt-4 mb-3" style="color: var(--accent-color);">Address Details</h5>
+                <div class="mb-3">
+                    <label asp-for="ResidentialAddress" class="form-label">Residential Address *</label>
+                    <textarea asp-for="ResidentialAddress" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PermanentAddress" class="form-label">Permanent Address *</label>
+                    <textarea asp-for="PermanentAddress" class="form-control" rows="2"></textarea>
+                </div>
+
+                <!-- Stream -->
+                <h5 class="mt-4 mb-3" style="color: var(--accent-color);">Admission Details</h5>
+                <div class="mb-3">
+                    <label asp-for="Stream" class="form-label">Stream *</label>
+                    <select asp-for="Stream" class="form-control form-control-lg">
+                        <option disabled selected>-- Select Stream --</option>
+                        <option>Science</option>
+                        <option>Commerce</option>
+                        <option>Arts</option>
+                    </select>
+                </div>
+
+                <!-- Previous Exam -->
+                <h5 class="mt-4 mb-3" style="color: var(--accent-color);">Previous Examination</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>School</th>
+                                <th>Enrollment No</th>
+                                <th>Stream</th>
+                                <th>Marks</th>
+                                <th>Out Of</th>
+                                <th>Class</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input asp-for="School" class="form-control" /></td>
+                                <td><input asp-for="EnrollmentNumber" class="form-control" /></td>
+                                <td><input asp-for="PreviousStream" class="form-control" /></td>
+                                <td><input asp-for="MarksSecured" class="form-control" /></td>
+                                <td><input asp-for="OutOf" class="form-control" /></td>
+                                <td><input asp-for="ClassObtained" class="form-control" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Sports -->
+                <div class="mb-3">
+                    <label asp-for="SportsDetails" class="form-label">Sports Details</label>
+                    <textarea asp-for="SportsDetails" class="form-control" rows="2"></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" onclick="downloadPdf()" class="btn btn-secondary">
+                        Download PDF
+                    </button>
+
+                    <button type="submit" id="submitBtn" class="btn"
+                            style="background-color: var(--accent-color); color: var(--contrast-color);">
+                        Submit Admission Form
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function disableSubmit() {
+        document.getElementById('submitBtn').disabled = true;
+    }
+
+    function downloadPdf() {
+
+        var mainForm = document.getElementById('mainForm');
+        var tempForm = document.createElement('form');
+
+        tempForm.method = 'POST';
+        tempForm.action = '@Url.Action("DownloadPdf", "Admission")';
+
+        Array.from(mainForm.elements).forEach(function (el) {
+            if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') && el.name) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = el.name;
+                input.value = el.value;
+                tempForm.appendChild(input);
+            }
+        });
+
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+        document.body.removeChild(tempForm);
+    }
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

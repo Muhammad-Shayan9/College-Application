@@ -1,0 +1,59 @@
+﻿@model List<College_Application.Models.Event>
+@{
+    ViewData["Title"] = "Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-title" data-aos="fade">
+    <div class="heading">
+        <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1>Events</h1>
+                    <p class="mb-0">
+                        ITM College regularly organizes academic, cultural, and professional events to enhance student learning and engagement.
+                        These events provide opportunities for skill development, collaboration, and real-world exposure.
+                        Our campus events encourage creativity, innovation, and holistic growth among students.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="events" class="events section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row">
+            @for (int i = 0; i < (Model?.Count ?? 0); i++)
+            {
+                var ev = Model[i];
+
+                <div class="col-md-6 d-flex align-items-stretch"
+                     data-aos="fade-up"
+                     data-aos-delay="@((i + 1) * 100)">
+
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="@(string.IsNullOrEmpty(ev.ImagePath)
+                                                                 ? Url.Content("~/User/img/default-event.png")
+                                                                 : ev.ImagePath)"
+                             alt="@ev.Title">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a>@ev.Title</a>
+                        </h5>
+
+                        <p class="card-text">
+                            @ev.Description
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+                        }
+        </div>
+
+    </div>
+</section>
+

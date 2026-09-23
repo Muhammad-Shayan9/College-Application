@@ -1,0 +1,18 @@
+﻿@page
+@model College_Application.Areas.Identity.Pages.Account.LogoutModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<College_Application.Areas.Identity.Data.ApplicationUser> SignInManager
+
+<form method="post" class="form-inline">
+    <button type="submit" class="btn btn-link text-dark">Logout</button>
+</form>
+
+@section Scripts {
+    @if (TempData["LogoutMessage"] != null)
+    {
+        <script>
+            alert("@TempData["LogoutMessage"]");
+            window.location.href = "/Home/Index"; // Logout ke baad redirect
+        </script>
+    }
+}

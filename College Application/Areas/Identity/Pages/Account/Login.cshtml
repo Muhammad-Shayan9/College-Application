@@ -1,0 +1,130 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="container">
+  <div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header text-center py-3"
+                 style="background-color: var(--accent-color); color: var(--contrast-color);">
+                <h4 class="mb-0">Log In</h4>
+            </div>
+
+            <div class="card-body p-4"
+                 style="background-color: var(--background-color);">
+
+                <form id="account" method="post">
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger py-2"></div>
+                    }
+
+
+                    @*<div class="form-group mb-3 text-center">
+                        <label asp-for="Input.Role"
+                               class="form-label fw-semibold"
+                               style="color: var(--default-color);">
+                            Select Role
+                        </label>
+
+                        <select asp-for="Input.Role"
+                                class="form-control form-control-lg text-center"
+                                style="
+                                        border-radius: 50px;
+                                        border: 2px solid var(--accent-color);
+                                        padding: 12px 20px;
+                                        font-weight: 500;
+                                        cursor: pointer;"
+                                       
+                                aria-required="true">
+                            <option value="" selected disabled>----- Select Role -----</option>
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+
+                        <span asp-validation-for="Input.Role" class="text-danger small"></span>
+                    </div>*@
+
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.Email" class="form-label fw-semibold"
+                               style="color: var(--default-color);"></label>
+                        <input asp-for="Input.Email"
+                               class="form-control form-control-lg"
+                               autocomplete="username"
+                               aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.Password" class="form-label fw-semibold"
+                               style="color: var(--default-color);"></label>
+                        <input asp-for="Input.Password"
+                               class="form-control form-control-lg"
+                               autocomplete="current-password"
+                               aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <div class="form-check">
+                            <input asp-for="Input.RememberMe" class="form-check-input" />
+                            <label asp-for="Input.RememberMe" class="form-check-label"
+                                   style="color: var(--default-color);">
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit"
+                                class="btn btn-lg"
+                                style="
+                                    background-color: var(--accent-color);
+                                    color: var(--contrast-color);
+                                    border-radius: 50px;
+                                ">
+                            Log in
+                        </button>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword" style="color: var(--accent-color);">
+                                Forgot your password?
+                            </a>
+                        </p>
+                        <p>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"
+                               style="color: var(--accent-color);">
+                                Register as a new user
+                            </a>
+                        </p>
+                        <p>
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation"
+                               style="color: var(--accent-color);">
+                                Resend email confirmation
+                            </a>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
